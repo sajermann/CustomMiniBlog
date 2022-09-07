@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import useAuthentication from '../../hooks/UseAuthentication';
 import styles from './index.module.css';
 
 export default function Register() {
@@ -8,8 +9,11 @@ export default function Register() {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [error, setError] = useState('');
+	const { createUser, errorMessage, loading } = useAuthentication();
 
-	function handleSubmit(e: FormEvent<HTMLFormElement>) {
+	useEffect(() => setError(errorMessage), [errorMessage]);
+
+	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		setError('');
 		const user = {
@@ -22,7 +26,8 @@ export default function Register() {
 			setError('As senhas precisam ser iguais');
 			return;
 		}
-		console.log({ user });
+		const resp = await createUser({ dataUser: user });
+		console.log({ resp });
 	}
 
 	return (
@@ -75,8 +80,8 @@ export default function Register() {
 					/>
 				</label>
 
-				<button type="submit" className="btn">
-					Cadastrar
+				<button type="submit" className="btn" disabled={loading}>
+					{loading ? 'Aguarde...' : 'Cadastrar'}
 				</button>
 				{error && <p className={styles.error}>{error}</p>}
 			</form>

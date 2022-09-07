@@ -1,10 +1,14 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContext';
 import About from '../About';
+import CreatePost from '../CreatePost';
+import Dashboard from '../Dashboard';
 import Home from '../Home';
 import Login from '../Login';
 import Register from '../Register';
 
 export default function Routes() {
+	const { user } = useAuthContext();
 	return (
 		<Switch>
 			<Route path="/" exact>
@@ -14,10 +18,16 @@ export default function Routes() {
 				<About />
 			</Route>
 			<Route path="/login" exact>
-				<Login />
+				{!user ? <Login /> : <Redirect to="/" />}
 			</Route>
 			<Route path="/register" exact>
-				<Register />
+				{!user ? <Register /> : <Redirect to="/" />}
+			</Route>
+			<Route path="/post/create" exact>
+				{user ? <CreatePost /> : <Redirect to="/login" />}
+			</Route>
+			<Route path="/dashboard" exact>
+				{user ? <Dashboard /> : <Redirect to="/login" />}
 			</Route>
 		</Switch>
 	);
