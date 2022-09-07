@@ -10,6 +10,7 @@
     "vitest": "vitest run --coverage"
   },
   "dependencies": {
+    "firebase": "^9.9.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^5.2.0"

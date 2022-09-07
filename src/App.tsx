@@ -7,8 +7,8 @@ import Routes from './Pages/Routes';
 function App() {
 	return (
 		<BrowserRouter>
-			<Poc />
-			<Routes />
+			<div className="container">MiniBlog</div>
+			{/* <Routes /> */}
 		</BrowserRouter>
 	);
 }
