@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './index.module.css';
 
 export default function Home() {
 	const [newItem, setNewItem] = useState('');

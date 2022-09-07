@@ -1,14 +1,18 @@
 import { BrowserRouter } from 'react-router-dom';
 
 import './App.css';
-import Poc from './Pages/Poc';
+import Footer from './Components/Footer';
+import Navbar from './Components/Navbar';
 import Routes from './Pages/Routes';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="container">MiniBlog</div>
-			{/* <Routes /> */}
+			<Navbar />
+			<div className="container">
+				<Routes />
+			</div>
+			<Footer />
 		</BrowserRouter>
 	);
 }
