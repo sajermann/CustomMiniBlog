@@ -70,8 +70,11 @@ export default function useAuthentication() {
 		} catch (errorCatch: any) {
 			console.log({ errorCatch });
 			let systemErrorMessage = '';
-			if (errorCatch.message.includes('user-not-found')) {
-				systemErrorMessage = 'Email ou senha não localizado';
+			if (
+				errorCatch.message.includes('user-not-found') ||
+				errorCatch.message.includes('password')
+			) {
+				systemErrorMessage = 'Dados incorretos';
 			} else {
 				systemErrorMessage = 'Ocorreu um erro';
 			}

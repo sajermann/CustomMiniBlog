@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FormEvent, useState } from 'react';
+import { useAuthContext } from '../../context/AuthContext';
+import { useCreatePost } from '../../hooks/UseCreatePost';
 import styles from './index.module.css';
 
 export default function CreatePost() {
@@ -7,11 +9,22 @@ export default function CreatePost() {
 	const [image, setImage] = useState('');
 	const [body, setBody] = useState('');
 	const [tags, setTags] = useState<string[]>([]);
-	const [formError, setFormError] = useState<string[]>([]);
+	const [formError, setFormError] = useState('');
 	const [loading, setLoading] = useState(false);
+	const { insertDocument, response } = useCreatePost('posts');
+	const { user } = useAuthContext();
 
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+		setFormError('');
+		insertDocument({
+			title,
+			image,
+			body,
+			tags,
+			uid: user?.uid,
+			createdBy: user?.displayName,
+		});
 	}
 
 	return (
@@ -63,10 +76,10 @@ export default function CreatePost() {
 						onChange={e => setTags(e.target.value.split(','))}
 					/>
 				</label>
-				<button type="submit" className="btn" disabled={loading}>
-					{loading ? 'Aguarde...' : 'Salvar'}
+				<button type="submit" className="btn" disabled={response.loading}>
+					{response.loading ? 'Aguarde...' : 'Salvar'}
 				</button>
-				{formError && <p className={styles.error}>{formError}</p>}
+				{response.error && <p className={styles.error}>{response.error}</p>}
 			</form>
 		</div>
 	);

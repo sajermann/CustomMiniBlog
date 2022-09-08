@@ -4,8 +4,8 @@ import useAuthentication from '../../hooks/UseAuthentication';
 import styles from './index.module.css';
 
 export default function Login() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [email, setEmail] = useState('bruno@gmail.com');
+	const [password, setPassword] = useState('123456789');
 	const [error, setError] = useState('');
 	const { errorMessage, loading, login } = useAuthentication();
 
