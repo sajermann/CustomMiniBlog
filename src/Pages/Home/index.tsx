@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import PostDetail from '../../Components/PostDetail';
 import { useFetchDocuments } from '../../hooks/UseFetchDocuments';
 import PostType from '../../types/PostType';
@@ -8,9 +8,14 @@ import styles from './index.module.css';
 export default function Home() {
 	const [query, setQuery] = useState('');
 	const { documents: posts, loading } = useFetchDocuments('posts');
+	const history = useHistory();
 
-	function handleSubmit() {
-		//
+	function handleSubmit(e: FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		if (!query) {
+			return;
+		}
+		history.push(`/search?q=${query}`);
 	}
 
 	return (
