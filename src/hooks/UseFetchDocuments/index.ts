@@ -10,7 +10,7 @@ import { db } from '../../firebase/config';
 
 export function useFetchDocuments(
 	docCollection: string,
-	search?: string,
+	search: string | null,
 	uuid?: string
 ) {
 	const [documents, setDocuments] = useState<any>([]);
