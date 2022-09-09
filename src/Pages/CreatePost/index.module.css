@@ -10,3 +10,8 @@
 	color: #aaa;
 	margin-bottom: 2em;
 }
+
+.createPost img {
+	width: 100px;
+	height: 100px;
+}
