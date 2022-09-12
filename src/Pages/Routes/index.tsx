@@ -5,6 +5,7 @@ import CreatePost from '../CreatePost';
 import Dashboard from '../Dashboard';
 import Home from '../Home';
 import Login from '../Login';
+import Post from '../Post';
 import Register from '../Register';
 import Search from '../Search';
 
@@ -20,6 +21,9 @@ export default function Routes() {
 			</Route>
 			<Route path="/search">
 				<Search />
+			</Route>
+			<Route path="/post/:id">
+				<Post />
 			</Route>
 			<Route path="/login" exact>
 				{!user ? <Login /> : <Redirect to="/" />}

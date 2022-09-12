@@ -16,7 +16,7 @@ export default function PostDetail({ post }: { post: PostType }) {
 					</p>
 				))}
 			</div>
-			<Link to={post.id} className="btn btn-outline">
+			<Link to={`/post/${post.id}`} className="btn btn-outline">
 				Ler
 			</Link>
 		</div>
