@@ -40,7 +40,6 @@ export function useFetchDocuments(
 					id: doc.id,
 					...doc.data(),
 				}));
-				console.log({ result });
 				setDocuments(result);
 			});
 			setLoading(false);
@@ -54,7 +53,7 @@ export function useFetchDocuments(
 	useEffect(() => {
 		load();
 		return () => setCancelled(true);
-	}, [docCollection, search, uuid, cancelled]);
+	}, [docCollection, documents, search, uuid, cancelled]);
 
 	return { documents, error, loading };
 }

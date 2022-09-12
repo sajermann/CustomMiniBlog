@@ -7,7 +7,7 @@ import styles from './index.module.css';
 
 export default function Home() {
 	const [query, setQuery] = useState('');
-	const { documents: posts, loading } = useFetchDocuments('posts');
+	const { documents: posts, loading } = useFetchDocuments('posts', null);
 	const history = useHistory();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {

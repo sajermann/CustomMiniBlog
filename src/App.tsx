@@ -1,7 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import { db } from './firebase/config';
 
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
@@ -11,7 +10,6 @@ import './App.css';
 import useAuthentication from './hooks/UseAuthentication';
 
 function App() {
-	console.log(db);
 	const [user, setUser] = useState<User | null>(null);
 	const { auth } = useAuthentication();
 	const [loadingUser, setLoadingUser] = useState(true);
@@ -19,7 +17,6 @@ function App() {
 	useEffect(() => {
 		setLoadingUser(true);
 		onAuthStateChanged(auth, userTemp => {
-			console.log({ userTemp });
 			setUser(userTemp);
 			setLoadingUser(false);
 		});

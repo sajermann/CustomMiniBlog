@@ -1,7 +1,24 @@
-.login {
+.container {
 	text-align: center;
 }
 
-.login p {
-	color: #aaa;
+.container img {
+	width: 300px;
+}
+
+.container h3 {
+	margin-bottom: 0.2em;
+}
+
+.container .tags {
+	display: flex;
+	justify-content: center;
+}
+
+.tags p {
+	margin-right: 1em;
+}
+
+.tags span {
+	font-weight: bold;
 }
