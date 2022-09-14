@@ -32,6 +32,12 @@ export function useFetchDocuments(
 					where('tags', 'array-contains', search),
 					orderBy('createdAt', 'desc')
 				);
+			} else if (uuid) {
+				q = await query(
+					collectionRef,
+					where('uid', '==', uuid),
+					orderBy('createdAt', 'desc')
+				);
 			} else {
 				q = await query(collectionRef, orderBy('createdAt', 'desc'));
 			}
@@ -53,7 +59,7 @@ export function useFetchDocuments(
 	useEffect(() => {
 		load();
 		return () => setCancelled(true);
-	}, [docCollection, documents, search, uuid, cancelled]);
+	}, [docCollection, search, uuid, cancelled]);
 
 	return { documents, error, loading };
 }

@@ -8,6 +8,7 @@ import Login from '../Login';
 import Post from '../Post';
 import Register from '../Register';
 import Search from '../Search';
+import UpdatePost from '../UpdatePost';
 
 export default function Routes() {
 	const { user } = useAuthContext();
@@ -22,7 +23,7 @@ export default function Routes() {
 			<Route path="/search">
 				<Search />
 			</Route>
-			<Route path="/post/:id">
+			<Route path="/post/:id" exact>
 				<Post />
 			</Route>
 			<Route path="/login" exact>
@@ -31,8 +32,11 @@ export default function Routes() {
 			<Route path="/register" exact>
 				{!user ? <Register /> : <Redirect to="/" />}
 			</Route>
-			<Route path="/post/create" exact>
+			<Route path="/posts/create" exact>
 				{user ? <CreatePost /> : <Redirect to="/login" />}
+			</Route>
+			<Route path="/posts/update/:id" exact>
+				{user ? <UpdatePost /> : <Redirect to="/login" />}
 			</Route>
 			<Route path="/dashboard" exact>
 				{user ? <Dashboard /> : <Redirect to="/login" />}

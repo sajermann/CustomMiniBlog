@@ -1,0 +1,17 @@
+.updatePost {
+	text-align: center;
+}
+
+.updatePost h2 {
+	font-size: 2.2em;
+}
+
+.updatePost p {
+	color: #aaa;
+	margin-bottom: 2em;
+}
+
+.updatePost img {
+	width: 100px;
+	height: 100px;
+}

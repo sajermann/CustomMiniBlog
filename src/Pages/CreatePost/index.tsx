@@ -17,6 +17,7 @@ export default function CreatePost() {
 
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+		console.log({ formError });
 		if (formError !== '') {
 			return;
 		}
